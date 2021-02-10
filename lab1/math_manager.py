@@ -2,9 +2,9 @@ from lab1.input_manager import get_task_data as gtd
 import numpy as np
 
 
-def solve():
+def solve(json_data):
     #Получить всю инфу
-    td = gtd()
+    td = gtd(json_data)
 
     #Первая строка матрици
     matrix = np.array([td.experts[0].grades], dtype=int)

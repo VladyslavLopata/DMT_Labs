@@ -1,12 +1,7 @@
 from lab1.model import Alternative, Expert, TaskData
 import json
 
-
-def get_task_data():
-
-    file_reader = open('lab1/task.json', 'r')
-    json_string_data = ''.join(file_reader.readlines())
-    json_data = json.loads(json_string_data)
+def get_task_data(json_data):
 
     experts = []
     for expert in json_data['experts']:
