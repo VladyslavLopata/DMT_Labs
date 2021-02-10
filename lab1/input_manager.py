@@ -19,10 +19,13 @@ def ask_grade_value():
     return int(input('Введіть максимальне значення оцінки: '))
 
 def ask_dominance(experts, alternatives, grade_value):
+    updated_experts = []
     for expert in experts:
-        expert.grades = []
+        updated_expert = Expert(name = expert.name, grades=[])
         for alternative in alternatives:
-            expert.grades.append(input(f'Експерт {expert.name}, введіть оцінку альтернативи {alternative.name}: '))
+            updated_expert.grades.append(input(f'Експерт {expert.name}, введіть оцінку альтернативи {alternative.name}: '))
+        updated_experts.append(updated_expert)
+    return updated_experts
 
 
 def get_task_data():
