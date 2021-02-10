@@ -1,11 +1,10 @@
-from lab1.input_manager import get_task_data as GTD
-import lab1.model
+from lab1.input_manager import get_task_data as gtd
 import numpy as np
 
 
-def Solve():
+def solve():
     #Получить всю инфу
-    td = GTD()
+    td = gtd()
 
     #Первая строка матрици
     matrix = np.array([td.experts[0].grades], dtype=int)
@@ -14,8 +13,6 @@ def Solve():
     for expert in td.experts[1:]:
         newrow = np.array([expert.grades], dtype=int)
         matrix = np.concatenate((matrix, newrow), axis=0)
-
-    print(matrix)
 
     #Сума оценок альтернатив у 1го експерта
     sumy = []
