@@ -1,7 +1,7 @@
-from lab1.model import Alternative, Expert, TaskData
+from model import Alternative, Expert, TaskData
 
 
-def get_task_data() -> TaskData:
+def get_task_data():
     exp1 = Expert(name = 'Vasia', grades=[1,2,3])
     exp2 = Expert(name = 'Petia', grades=[3,2,3])
 
