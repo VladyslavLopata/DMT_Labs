@@ -3,7 +3,7 @@ from lab1.model import Alternative, Expert, TaskData
 freader = open('text.txt', 'r')
 
 def input_method(question):
-    return freader.readline(question).replace('\r', '').replace('\n', '')
+    return freader.readline().replace('\r', '').replace('\n', '')
 
 def ask_alternatives():
     number = int(input_method('Введіть число альтернатив: '))
