@@ -8,11 +8,11 @@ def Solve():
     td = GTD()
 
     #Первая строка матрици
-    matrix = np.array([td.experts[0].grades])
+    matrix = np.array([td.experts[0].grades], dtype=int)
 
     #Все остальные строки
     for expert in td.experts[1:]:
-        newrow = np.array([expert.grades])
+        newrow = np.array([expert.grades], dtype=int)
         matrix = np.concatenate((matrix, newrow), axis=0)
 
     print(matrix)
