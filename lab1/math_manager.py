@@ -8,12 +8,14 @@ def Solve():
     td = GTD()
 
     #Первая строка матрици
-    matrix = np.array([td.experts[0].grades],dtype=int)
+    matrix = np.array([td.experts[0].grades])
 
     #Все остальные строки
     for expert in td.experts[1:]:
-        newrow = np.array([expert.grades], dtype=int)
+        newrow = np.array([expert.grades])
         matrix = np.concatenate((matrix, newrow), axis=0)
+
+    print(matrix)
 
     #Сума оценок альтернатив у 1го експерта
     sumy = []
