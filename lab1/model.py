@@ -1,5 +1,5 @@
 class Alternative:
-    def __init__(self, name: str) -> None:
+    def __init__(self, name) -> None:
         self.name = name
 
 class Expert:
