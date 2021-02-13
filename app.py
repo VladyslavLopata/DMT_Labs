@@ -7,8 +7,9 @@ from flask import Flask, jsonify, request
 from flask_cors import CORS
 
 import lab1.math_manager as l1
-import lab2.solver as l2
-import lab3.math_solver as l3
+import lab2.math_manager as l2
+import lab3.math_manager as l3
+
 
 app = Flask(__name__)
 

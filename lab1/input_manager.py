@@ -1,5 +1,6 @@
 from lab1.model import Alternative, Expert, TaskData
 
+
 def get_task_data(json_data):
     experts = []
     for expert in json_data['experts']:
@@ -10,6 +11,3 @@ def get_task_data(json_data):
         alternatives.append(Alternative(name=alternative))
 
     return TaskData(alternatives=alternatives, experts=experts)
-
-
-
