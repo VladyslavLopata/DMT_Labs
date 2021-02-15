@@ -1,4 +1,6 @@
 '''
+==============================================
+input_json:
 {
     "As": ["a1", "a2", "a3", "a4"],
     "Xs": ["x1","x2","x3","x4","x5"],
@@ -8,70 +10,111 @@
         [1,2,6,7]
     ]
 }
+==============================================
+output_json:
+{
+    "gurvizza": [
+        [
+            4.8,
+            "a2"
+        ],
+        [
+            4.6000000000000005,
+            "a3"
+        ],
+        [
+            2.8,
+            "a1"
+        ]
+    ],
+    "maxmax": [
+        [
+            7,
+            "a3"
+        ],
+        [
+            6,
+            "a2"
+        ],
+        [
+            4,
+            "a1"
+        ]
+    ],
+    "maxmin": [
+        [
+            3,
+            "a2"
+        ],
+        [
+            1,
+            "a1"
+        ],
+        [
+            1,
+            "a3"
+        ]
+    ]
+}
+==============================================
 '''
 
 
-def maxmin(matrix, alternatives):
-    minimums = []
-    for i in range(0, len(matrix[0])):
-        column = []
-        for j in range(0, len(matrix)):
-            column.append(matrix[j][i])
-        minimums.append((min(column), i))
+def common_logics(method, matrix, alternatives):
+    '''
+    берёт [method] (это или мин или макс по j),
+    собирает по нему массив минимумов или максимумов
+    соединяет с именами
+    сортирует по убыванию
+    '''
+    minmax = [method(line) for line in matrix]
+    named = zip(minmax, alternatives)
+    sorted_by_highest = sorted(named, key=lambda x: x[0], reverse=True)
+    return sorted_by_highest
 
-    result = max(minimums, key=lambda tup: tup[0])
-    ret_result = (result[0], alternatives[result[1]])
-    return ret_result
+
+def maxmin(matrix, alternatives):
+    '''
+    Считает критерий Вальда.
+    '''
+    return common_logics(min, matrix, alternatives)
 
 
 def maxmax(matrix, alternatives):
-    maximums = []
-    for i in range(0, len(matrix[0])):
-        column = []
-        for j in range(0, len(matrix)):
-            column.append(matrix[j][i])
-        maximums.append((max(column), i))
-
-    result = max(maximums, key=lambda tup: tup[0])
-    ret_result = (result[0], alternatives[result[1]])
-    return ret_result
+    '''
+    Считает maxmax
+    '''
+    return common_logics(max, matrix, alternatives)
 
 
 def gurvizza(matrix, alternatives, alpha):
-    minimums = []
-    maximums = []
-    for i in range(0, len(matrix[0])):
-        column = []
-        for j in range(0, len(matrix)):
-            column.append(matrix[j][i])
-        minimums.append((min(column), i))
-        maximums.append((max(column), i))
-
-    results = []
-    for i in range(0, len(maximums)):
-        results.append(
-            ((alpha*maximums[i][0] + (1-alpha)*minimums[i][0]), maximums[i][1]))
-    ret = (max(results, key=lambda tup: tup[0])[
-           0], alternatives[max(results, key=lambda tup: tup[0])[1]])
-    return ret
+    '''
+    Берёт максимумы и минимумы по j
+    Считает для каждого i формулу с альфой
+    Зипует с именами и сортирует по убыванию
+    '''
+    maxes = [max(line) for line in matrix]
+    mins = [min(line) for line in matrix]
+    calculated_criteria = [alpha * val[0] +
+                           (1-alpha) * val[1] for val in zip(maxes, mins)]
+    named = zip(calculated_criteria, alternatives)
+    sorted_by_highest = sorted(named, key=lambda x: x[0], reverse=True)
+    return sorted_by_highest
 
 
 def solve(json_data):
-    a_s = []
-    for a in json_data['As']:
-        a_s.append(a)
+    '''
+    Парсит жсон
+    Собирает ответ
+    '''
+    a_s = json_data['As']
 
-    x_s = []
-    for x in json_data['Xs']:
-        x_s.append(x)
+    matrix = json_data['matrix']
 
-    matrix = []
-    for arow in json_data['matrix']:
-        matrix.append(arow)
+    results = {
+        "maxmin": maxmin(matrix, a_s),
+        "maxmax": maxmax(matrix, a_s),
+        "gurvizza": gurvizza(matrix, a_s, 0.6)
+    }
 
-    results = []
-
-    results.append(maxmin(matrix, a_s))
-    results.append(maxmax(matrix, a_s))
-    results.append(gurvizza(matrix, a_s, 0.6))
     return results
