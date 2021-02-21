@@ -102,10 +102,6 @@ def solve(json_data):
     Runs Laplasus and Savidge rankings and returns json answer
     '''
     return {
-        "Laplasus": {
-            value[1]: {'criteria': value[0], 'rank': index} for index, value in enumerate(laplasus(json_data), 1)
-        },
-        "Savidge": {
-            value[1]: {'criteria': value[0], 'rank': index} for index, value in enumerate(savidge(json_data), 1)
-        }
+        "Laplasus": laplasus(json_data),
+        "Savidge": savidge(json_data)
     }
