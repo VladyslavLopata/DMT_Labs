@@ -1,4 +1,4 @@
 {
     "python.linting.pylintEnabled": true,
-    "python.pythonPath": "c:\\Users\\Keppi\\Desktop\\exp\\DMT_Labs\\venv\\Scripts\\python.exe"
+    "python.pythonPath": "venv\\Scripts\\python.exe"
 }

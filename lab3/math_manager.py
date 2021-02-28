@@ -13,34 +13,34 @@ input json:
 ====================================================
 output json:
 {
-    "Laplasus": {
-        "A1": {
-            "criteria": 4.5,
-            "rank": 2
-        },
-        "A2": {
-            "criteria": 4.75,
-            "rank": 1
-        },
-        "A3": {
-            "criteria": 4.5,
-            "rank": 3
-        }
-    },
-    "Savidge": {
-        "A1": {
-            "criteria": 6,
-            "rank": 2
-        },
-        "A2": {
-            "criteria": 4,
-            "rank": 1
-        },
-        "A3": {
-            "criteria": 7,
-            "rank": 3
-        }
-    }
+    "Laplasus": [
+        [
+            2.0,
+            "Vasia"
+        ],
+        [
+            2.0,
+            "Petia"
+        ],
+        [
+            2.0,
+            "Zhora"
+        ]
+    ],
+    "Savidge": [
+        [
+            2,
+            "Vasia"
+        ],
+        [
+            2,
+            "Petia"
+        ],
+        [
+            2,
+            "Zhora"
+        ]
+    ]
 }
 ====================================================
 """
